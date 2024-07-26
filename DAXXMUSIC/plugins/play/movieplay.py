@@ -7,7 +7,7 @@ import os, yt_dlp
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pytgcalls.types import AudioVideoPiped
 from DAXXMUSIC.plugins.play import play
-from DAXXMUSIC.plugins.play.pornplay import play
+from DAXXMUSIC.plugins.play.movieplay import play
 
 #
 #####
@@ -62,7 +62,7 @@ async def get_video_stream(link):
 
 
 def get_video_info(title):
-    url_base = f'https://www.xnxx.com/search/{title}'
+    url_base = f'https://www.justwatch.com/in/search{title}'
     try:
         with requests.Session() as s:
             r = s.get(url_base)
@@ -83,7 +83,7 @@ def get_video_info(title):
 
 
 
-@app.on_message(filters.command("porn"))
+@app.on_message(filters.command("film"))
 async def get_random_video_info(client, message):
     if len(message.command) == 1:
         await message.reply("Please provide a title to search.")
@@ -110,7 +110,7 @@ async def get_random_video_info(client, message):
 ######
 
 
-@app.on_message(filters.command("xnxx"))
+@app.on_message(filters.command("xd"))
 async def get_random_video_info(client, message):
     if len(message.command) == 1:
         await message.reply("Please provide a title to search.")
