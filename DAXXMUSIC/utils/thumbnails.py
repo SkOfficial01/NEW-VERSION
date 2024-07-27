@@ -96,14 +96,14 @@ async def get_thumb(videoid):
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
-                f = await aiofiles.open(f"cache/thumb{videoid}.png", mode="wb")
+                f = await aiofiles.open(f"cache/thumb1{videoid}.png", mode="wb")
                 await f.write(await resp.read())
                 await f.close()
 
-    youtube = Image.open(f"cache/thumb{videoid}.png")
+    youtube = Image.open(f"cache/thumb1{videoid}.png")
     image1 = changeImageSize(1280, 720, youtube)
     image2 = image1.convert("RGBA")
-    background = image2.filter(filter=ImageFilter.BoxBlur(20))
+    background = image2.filter(filter=ImageFilter.BoxBlur(0))
     enhancer = ImageEnhance.Brightness(background)
     background = enhancer.enhance(0.6)
     draw = ImageDraw.Draw(background)
@@ -154,7 +154,7 @@ async def get_thumb(videoid):
     background.paste(play_icons, (text_x_position, 450), play_icons)
 
     try:
-        os.remove(f"cache/thumb{videoid}.png")
+        os.remove(f"cache/thumb1{videoid}.png")
     except:
         pass
     background.save(f"cache/{videoid}_v4.png")
