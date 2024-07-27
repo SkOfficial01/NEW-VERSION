@@ -135,7 +135,7 @@ async def stream(
         vidid = result["vidid"]
         title = (result["title"]).title()
         duration_min = result["duration_min"]
-        thumbnail = result["thumb1"]
+        thumbnail = result["thumb"]
         status = True if video else None
         try:
             file_path, direct = await YouTube.download(
