@@ -135,7 +135,7 @@ async def stream(
         vidid = result["vidid"]
         title = (result["title"]).title()
         duration_min = result["duration_min"]
-        thumbnail = result["thumb"]
+        thumbnail = result["thumb1"]
         status = True if video else None
         try:
             file_path, direct = await YouTube.download(
@@ -305,7 +305,7 @@ async def stream(
         link = result["link"]
         vidid = result["vidid"]
         title = (result["title"]).title()
-        thumbnail = result["thumb"]
+        thumbnail = result["thumb1"]
         duration_min = "Live Track"
         status = True if video else None
         if await is_active_chat(chat_id):
