@@ -30,9 +30,7 @@ def private_panel(_):
         ],
         [
             InlineKeyboardButton(text=_["S_B_4"], callback_data="settings_back_helper"),
-             InlineKeyboardButton(
-                text=_["ᴜᴘᴅᴀᴛᴇs"],
-                url=f"https://t.me/SANKI_XDX"),
+            InlineKeyboardButton(text=_["ᴜᴘᴅᴀᴛᴇs"], url=f"https://t.me/SANKI_XDX" ),
         ],
           [
             InlineKeyboardButton(text=_["Sᴜᴘᴘᴏʀᴛ"], url=config.SUPPORT_CHAT),
