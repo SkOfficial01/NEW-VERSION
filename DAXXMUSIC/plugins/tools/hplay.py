@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/play', methods=['POST'])
+@app.route('/hplay', methods=['POST'])
 def play():
     data = request.json
     track_id = data.get('track_id')
