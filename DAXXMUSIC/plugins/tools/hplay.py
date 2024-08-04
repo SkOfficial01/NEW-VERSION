@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from DAXXMUSIC from app
+from DAXXMUSIC import app
 
 app = Flask(__name__)
 
