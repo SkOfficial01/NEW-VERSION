@@ -1,4 +1,5 @@
 from pyrogram.types import Message
+from pyrogram import filters
 from pyrogram.enums import ChatType, ChatMemberStatus
 
 
@@ -28,6 +29,10 @@ async def admin_check(message: Message) -> bool:
     else:
         return True
 
+
+#-------------------------------+ADMIN+FILTER+------------------------------#
+
+
 USE_AS_BOT = True
 
 def f_sudo_filter(filt, client, message):
@@ -41,7 +46,6 @@ def f_sudo_filter(filt, client, message):
         not message.edit_date
     )
 
-#-----------------------------------ADMIN FILTER-------------------------–----#
 
 sudo_filter = filters.create(func=f_sudo_filter, name="SudoFilter")
 
