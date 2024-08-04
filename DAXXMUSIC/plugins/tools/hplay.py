@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, jsonify
-from templates import index.html
 from DAXXMUSIC from app
 
 app = Flask(__name__)
