@@ -31,11 +31,11 @@ from DCxMUSIC.utils.database import (
     remove_active_video_chat,
     set_loop,
 )
-from DCxMUSIC.utils.exceptions import AssistantErr
-from DCxMUSIC.utils.formatters import check_duration, seconds_to_min, speed_converter
-from DCxMUSIC.utils.inline.play import stream_markup
-from DCxMUSIC.utils.stream.autoclear import auto_clean
-from DCxMUSIC.utils.thumbnails import get_thumb
+from DAXXMUSIC.utils.exceptions import AssistantErr
+from DAXXMUSIC.utils.formatters import check_duration, seconds_to_min, speed_converter
+from DAXXMUSIC.utils.inline.play import stream_markup
+from DAXXMUSIC.utils.stream.autoclear import auto_clean
+from DAXXMUSIC.utils.thumbnails import get_thumb
 from strings import get_string
 
 autoend = {}
