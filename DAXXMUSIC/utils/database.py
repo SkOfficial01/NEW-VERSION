@@ -23,6 +23,7 @@ sudoersdb = mongodb.sudoers
 usersdb = mongodb.tgusersdb
 cardsdb = mongodb.cards
 fbandb = mongodb
+sankibansdb = mongodb.sankiban
 
 # Shifting to memory [mongo sucks often]
 active = []
