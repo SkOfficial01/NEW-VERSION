@@ -11,8 +11,8 @@ from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
 from youtubesearchpython.__future__ import VideosSearch
 
-from DCxMUSIC.utils.database import is_on_off
-from DCxMUSIC.utils.formatters import time_to_seconds
+from DAXXMUSIC.utils.database import is_on_off
+from DAXXMUSIC.utils.formatters import time_to_seconds
 
 
 async def shell_cmd(cmd):
