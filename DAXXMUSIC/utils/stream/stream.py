@@ -5,15 +5,15 @@ from typing import Union
 from pyrogram.types import InlineKeyboardMarkup
 
 import config
-from DCxMUSIC import Carbon, YouTube, app, YTB
-from DCxMUSIC.core.call import DC
-from DCxMUSIC.misc import db
-from DCxMUSIC.utils.database import add_active_video_chat, is_active_chat
-from DCxMUSIC.utils.exceptions import AssistantErr
-from DCxMUSIC.utils.inline import aq_markup, close_markup, stream_markup
-from DCxMUSIC.utils.pastebin import DCBin
-from DCxMUSIC.utils.stream.queue import put_queue, put_queue_index
-from DCxMUSIC.utils.thumbnails import get_thumb
+from DAXXMUSIC import Carbon, YouTube, app, YTB
+from DAXXMUSIC.core.call import DC
+from DAXXMUSIC.misc import db
+from DAXXMUSIC.utils.database import add_active_video_chat, is_active_chat
+from DAXXMUSIC.utils.exceptions import AssistantErr
+from DAXXMUSIC.utils.inline import aq_markup, close_markup, stream_markup
+from DAXXMUSIC.utils.pastebin import DCBin
+from DAXXMUSIC.utils.stream.queue import put_queue, put_queue_index
+from DAXXMUSIC.utils.thumbnails import get_thumb
 
 
 async def stream(
