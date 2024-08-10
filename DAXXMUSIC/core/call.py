@@ -17,9 +17,9 @@ from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQuality
 from pytgcalls.types.stream import StreamAudioEnded
 
 import config
-from DCxMUSIC import LOGGER, YouTube, app, YTB
-from DCxMUSIC.misc import db
-from DCxMUSIC.utils.database import (
+from DAXXMUSIC import LOGGER, YouTube, app, YTB
+from DAXXMUSIC.misc import db
+from DAXXMUSIC.utils.database import (
     add_active_chat,
     add_active_video_chat,
     get_lang,
