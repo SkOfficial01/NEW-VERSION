@@ -17,9 +17,9 @@ from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQuality
 from pytgcalls.types.stream import StreamAudioEnded
 
 import config
-from DAXXMUSIC import LOGGER, YouTube, app
-from DAXXMUSIC.misc import db
-from DAXXMUSIC.utils.database import (
+from DCxMUSIC import LOGGER, YouTube, app, YTB
+from DCxMUSIC.misc import db
+from DCxMUSIC.utils.database import (
     add_active_chat,
     add_active_video_chat,
     get_lang,
@@ -31,11 +31,11 @@ from DAXXMUSIC.utils.database import (
     remove_active_video_chat,
     set_loop,
 )
-from DAXXMUSIC.utils.exceptions import AssistantErr
-from DAXXMUSIC.utils.formatters import check_duration, seconds_to_min, speed_converter
-from DAXXMUSIC.utils.inline.play import stream_markup
-from DAXXMUSIC.utils.stream.autoclear import auto_clean
-from DAXXMUSIC.utils.thumbnails import get_thumb
+from DCxMUSIC.utils.exceptions import AssistantErr
+from DCxMUSIC.utils.formatters import check_duration, seconds_to_min, speed_converter
+from DCxMUSIC.utils.inline.play import stream_markup
+from DCxMUSIC.utils.stream.autoclear import auto_clean
+from DCxMUSIC.utils.thumbnails import get_thumb
 from strings import get_string
 
 autoend = {}
@@ -416,7 +416,15 @@ class Call(PyTgCalls):
                         video=True if str(streamtype) == "video" else False,
                     )
                 except:
-                    return await mystic.edit_text(
+                    try:
+                        file_path, direct = await YTB.download(
+                            videoid,
+                            mystic,
+                            videoid=True,
+                            video=True if str(streamtype) == "video" else False,
+                        )
+                    except:
+                        return await mystic.edit_text(
                         _["call_6"], disable_web_page_preview=True
                     )
                 if video:
@@ -598,4 +606,4 @@ class Call(PyTgCalls):
             await self.change_stream(client, update.chat_id)
 
 
-DAXX = Call()
+DC = Call()
