@@ -84,7 +84,7 @@ async def stream(
                         )
                     except:
                         raise AssistantErr(_["play_14"])
-                await DC.join_call(
+                await DAXX.join_call(
                     chat_id,
                     original_chat_id,
                     file_path,
@@ -175,7 +175,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await DC.join_call(
+            await DAXX.join_call(
                 chat_id,
                 original_chat_id,
                 file_path,
@@ -235,7 +235,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await DC.join_call(chat_id, original_chat_id, file_path, video=None)
+            await DAXX.join_call(chat_id, original_chat_id, file_path, video=None)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -287,7 +287,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await DC.join_call(chat_id, original_chat_id, file_path, video=status)
+            await DAXX.join_call(chat_id, original_chat_id, file_path, video=status)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -401,7 +401,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await DC.join_call(
+            await DAXX.join_call(
                 chat_id,
                 original_chat_id,
                 link,
