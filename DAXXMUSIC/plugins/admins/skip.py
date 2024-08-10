@@ -3,7 +3,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 
 import config
 from DAXXMUSIC import YouTube, app, YTB
-from DAXXMUSIC.core.call import DC
+from DAXXMUSIC.core.call import DAXX
 from DAXXMUSIC.misc import db
 from DAXXMUSIC.utils.database import get_loop
 from DAXXMUSIC.utils.decorators import AdminRightsCheck
