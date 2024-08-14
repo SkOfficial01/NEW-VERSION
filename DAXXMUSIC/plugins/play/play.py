@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
-from DAXXMUSIC import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, YTM, app
+from DAXXMUSIC import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
 from DAXXMUSIC.core.call import DAXX
 from DAXXMUSIC.utils import seconds_to_min, time_to_seconds
 from DAXXMUSIC.utils.channelplay import get_channeplayCB
@@ -57,7 +57,6 @@ async def play_commnd(
         if message.reply_to_message
         else None
     )
-
     video_telegram = (
         (message.reply_to_message.video or message.reply_to_message.document)
         if message.reply_to_message
@@ -154,8 +153,7 @@ async def play_commnd(
                         config.PLAYLIST_FETCH_LIMIT,
                         message.from_user.id,
                     )
-                except Exception as e:
-                    print(e)
+                except:
                     return await mystic.edit_text(_["play_3"])
                 streamtype = "playlist"
                 plist_type = "yt"
@@ -164,28 +162,18 @@ async def play_commnd(
                 else:
                     plist_id = url.split("=")[1]
                 img = config.PLAYLIST_IMG_URL
-                cap = _["play_10"]
-            elif "https://youtu.be" in url:
-                videoid = url.split("/")[-1].split("?")[0]
-                details, track_id = await YouTube.track(f"https://www.youtube.com/watch?v={videoid}")
-                streamtype = "youtube"
-                img = details["thumb1"]
-                cap = _["play_11"].format(
-                    details["title"],
-                    details["duration_min"],
-                )
+                cap = _["play_9"]
             else:
                 try:
                     details, track_id = await YouTube.track(url)
-                except Exception as e:
-                    print(e)
+                except:
                     return await mystic.edit_text(_["play_3"])
                 streamtype = "youtube"
                 img = details["thumb"]
-                cap = _["play_11"].format(
+                cap = _["play_10"].format(
                     details["title"],
                     details["duration_min"],
-                                  )
+                )
         elif await Spotify.valid(url):
             spotify = True
             if not config.SPOTIFY_CLIENT_ID and not config.SPOTIFY_CLIENT_SECRET:
@@ -409,7 +397,7 @@ async def play_commnd(
                 )
                 await mystic.delete()
                 await message.reply_photo(
-                    photo=details["thumb1"],
+                    photo=details["thumb"],
                     caption=_["play_10"].format(
                         details["title"].title(),
                         details["duration_min"],
