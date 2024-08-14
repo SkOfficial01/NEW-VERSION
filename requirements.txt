@@ -60,8 +60,6 @@ telegraph
 tgcrypto
 unidecode
 wget
-git+https://github.com/yt-dlp/yt-dlp
-pytube
+yt-dlp==2024.08.06
 youtube-search
 youtube-search-python
-yt-dlp --username schoudhary11256@gmail.com --password skcc112566 https://www.youtube.com/watch?v=?
