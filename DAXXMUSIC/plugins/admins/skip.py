@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 import config
-from DAXXMUSIC import YouTube, app, YTB
+from DAXXMUSIC import YouTube, app
 from DAXXMUSIC.core.call import DAXX
 from DAXXMUSIC.misc import db
 from DAXXMUSIC.utils.database import get_loop
@@ -48,7 +48,7 @@ async def skip(cli, message: Message, _, chat_id):
                                         ),
                                         reply_markup=close_markup(_),
                                     )
-                                    await DC.stop_stream(chat_id)
+                                    await DAXX.stop_stream(chat_id)
                                 except:
                                     return
                                 break
@@ -75,7 +75,7 @@ async def skip(cli, message: Message, _, chat_id):
                     reply_markup=close_markup(_),
                 )
                 try:
-                    return await DC.stop_stream(chat_id)
+                    return await DAXX.stop_stream(chat_id)
                 except:
                     return
         except:
@@ -86,7 +86,7 @@ async def skip(cli, message: Message, _, chat_id):
                     ),
                     reply_markup=close_markup(_),
                 )
-                return await DC.stop_stream(chat_id)
+                return await DAXX.stop_stream(chat_id)
             except:
                 return
     queued = check[0]["file"]
@@ -111,7 +111,7 @@ async def skip(cli, message: Message, _, chat_id):
         except:
             image = None
         try:
-            await DC.skip_stream(chat_id, link, video=status, image=image)
+            await DAXX.skip_stream(chat_id, link, video=status, image=image)
         except:
             return await message.reply_text(_["call_6"])
         button = stream_markup(_, chat_id)
@@ -138,22 +138,13 @@ async def skip(cli, message: Message, _, chat_id):
                 video=status,
             )
         except:
-            try:
-                file_path, direct = await YTB.download(
-                    videoid,
-                    mystic,
-                    videoid=True,
-                    video=status,
-                )
-            except:
-            
-                return await mystic.edit_text(_["call_6"])
+            return await mystic.edit_text(_["call_6"])
         try:
             image = await YouTube.thumbnail(videoid, True)
         except:
             image = None
         try:
-            await DC.skip_stream(chat_id, file_path, video=status, image=image)
+            await DAXX.skip_stream(chat_id, file_path, video=status, image=image)
         except:
             return await mystic.edit_text(_["call_6"])
         button = stream_markup(_, chat_id)
@@ -173,7 +164,7 @@ async def skip(cli, message: Message, _, chat_id):
         await mystic.delete()
     elif "index_" in queued:
         try:
-            await DC.skip_stream(chat_id, videoid, video=status)
+            await DAXX.skip_stream(chat_id, videoid, video=status)
         except:
             return await message.reply_text(_["call_6"])
         button = stream_markup(_, chat_id)
@@ -195,7 +186,7 @@ async def skip(cli, message: Message, _, chat_id):
             except:
                 image = None
         try:
-            await DC.skip_stream(chat_id, queued, video=status, image=image)
+            await DAXX.skip_stream(chat_id, queued, video=status, image=image)
         except:
             return await message.reply_text(_["call_6"])
         if videoid == "telegram":
