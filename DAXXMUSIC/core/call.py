@@ -17,7 +17,7 @@ from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQuality
 from pytgcalls.types.stream import StreamAudioEnded
 
 import config
-from DAXXMUSIC import LOGGER, YouTube, app, YTB
+from DAXXMUSIC import LOGGER, YouTube, app
 from DAXXMUSIC.misc import db
 from DAXXMUSIC.utils.database import (
     add_active_chat,
@@ -35,7 +35,7 @@ from DAXXMUSIC.utils.exceptions import AssistantErr
 from DAXXMUSIC.utils.formatters import check_duration, seconds_to_min, speed_converter
 from DAXXMUSIC.utils.inline.play import stream_markup
 from DAXXMUSIC.utils.stream.autoclear import auto_clean
-from DAXXMUSIC.utils.thumbnails import get_thumb
+from DAXXMUSIC.utils.thumbnails import gen_thumb
 from strings import get_string
 
 autoend = {}
@@ -271,14 +271,14 @@ class Call(PyTgCalls):
         await assistant.change_stream(chat_id, stream)
 
     async def stream_call(self, link):
-        assistant = await group_assistant(self, config.LOGGER_ID)
+        assistant = await group_assistant(self, config.LOG_GROUP_ID)
         await assistant.join_group_call(
-            config.LOGGER_ID,
+            config.LOG_GROUP_ID,
             AudioVideoPiped(link),
             stream_type=StreamType().pulse_stream,
         )
         await asyncio.sleep(0.2)
-        await assistant.leave_group_call(config.LOGGER_ID)
+        await assistant.leave_group_call(config.LOG_GROUP_ID)
 
     async def join_call(
         self,
@@ -391,7 +391,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_6"],
                     )
-                img = await get_thumb(videoid)
+                img = await gen_thumb(videoid)
                 button = stream_markup(_, chat_id)
                 run = await app.send_photo(
                     chat_id=original_chat_id,
@@ -416,15 +416,7 @@ class Call(PyTgCalls):
                         video=True if str(streamtype) == "video" else False,
                     )
                 except:
-                    try:
-                        file_path, direct = await YTB.download(
-                            videoid,
-                            mystic,
-                            videoid=True,
-                            video=True if str(streamtype) == "video" else False,
-                        )
-                    except:
-                        return await mystic.edit_text(
+                    return await mystic.edit_text(
                         _["call_6"], disable_web_page_preview=True
                     )
                 if video:
@@ -445,7 +437,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_6"],
                     )
-                img = await get_thumb(videoid)
+                img = await gen_thumb(videoid)
                 button = stream_markup(_, chat_id)
                 await mystic.delete()
                 run = await app.send_photo(
@@ -514,7 +506,7 @@ class Call(PyTgCalls):
                         if str(streamtype) == "audio"
                         else config.TELEGRAM_VIDEO_URL,
                         caption=_["stream_1"].format(
-                            config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
+                            config.SUPPORT_GROUP, title[:23], check[0]["dur"], user
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
@@ -526,14 +518,14 @@ class Call(PyTgCalls):
                         chat_id=original_chat_id,
                         photo=config.SOUNCLOUD_IMG_URL,
                         caption=_["stream_1"].format(
-                            config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
+                            config.SUPPORT_GROUP, title[:23], check[0]["dur"], user
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "tg"
                 else:
-                    img = await get_thumb(videoid)
+                    img = await gen_thumb(videoid)
                     button = stream_markup(_, chat_id)
                     run = await app.send_photo(
                         chat_id=original_chat_id,
