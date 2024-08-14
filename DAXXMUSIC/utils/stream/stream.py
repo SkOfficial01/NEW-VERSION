@@ -5,7 +5,7 @@ from typing import Union
 from pyrogram.types import InlineKeyboardMarkup
 
 import config
-from DAXXMUSIC import Carbon, YouTube, app, YTB
+from DAXXMUSIC import Carbon, YouTube, app
 from DAXXMUSIC.core.call import DAXX
 from DAXXMUSIC.misc import db
 from DAXXMUSIC.utils.database import add_active_video_chat, is_active_chat
@@ -32,7 +32,7 @@ async def stream(
     if not result:
         return
     if forceplay:
-        await DC.force_stop_stream(chat_id)
+        await DAXX.force_stop_stream(chat_id)
     if streamtype == "playlist":
         msg = f"{_['play_19']}\n\n"
         count = 0
@@ -78,12 +78,7 @@ async def stream(
                         vidid, mystic, video=status, videoid=True
                     )
                 except:
-                    try:
-                        file_path, direct = await YTB.download(
-                            vidid, mystic, video=status, videoid=True
-                        )
-                    except:
-                        raise AssistantErr(_["play_14"])
+                    raise AssistantErr(_["play_14"])
                 await DAXX.join_call(
                     chat_id,
                     original_chat_id,
@@ -121,7 +116,7 @@ async def stream(
         if count == 0:
             return
         else:
-            link = await DCBin(msg)
+            link = await DAXXBin(msg)
             lines = msg.count("\n")
             if lines >= 17:
                 car = os.linesep.join(msg.split(os.linesep)[:17])
@@ -147,12 +142,7 @@ async def stream(
                 vidid, mystic, videoid=True, video=status
             )
         except:
-            try:
-                file_path, direct = await YTB.download(
-                    vidid, mystic, videoid=True, video=status
-                )
-            except:
-                raise AssistantErr(_["play_14"])
+            raise AssistantErr(_["play_14"])
         if await is_active_chat(chat_id):
             await put_queue(
                 chat_id,
